@@ -23,15 +23,15 @@ You can also find thorough description of each standard tag and standard message
 
 ## Motivation.
 I work for financial organization Rocketbank LLC. Recently I had task to implement real-time currency purchase for our clients. We utilize micro service architecture approach. To accomplish this task was decided implement micro-service(lets call it ***FIX Service***), which will purchase it directly from currency broker and will be something like proxy between our system and currency broker, which also decodes outgoing messages from our system, to broker and vice versa. Also we need to be notified about the current currency rates and broadcast it to all services interested in it via **rabbitmq**. Oversimplified architecture looks like the following(Pic.2): 
-1. We connect to 3-rd party broker via FIX protocol, who will sell/buy currency and who notifies us about currency rates. Permanently ask it for current market currency rates(In terms of FIX protocol  sends [MarketDataRequest](https://www.onixs.biz/fix-dictionary/4.2/msgType_V_86.html)).
-2. On сurrency rate change we send it to RabbitMq Fanout exchange.
-3. All services which queues bound to exchange got notified.
+1. We connect to 3-rd party broker via FIX protocol, who will sell/buy currency and who notifies us about the currency rates. Permanently ask it for the current market currency rates(In terms of FIX protocol sends [MarketDataRequest](https://www.onixs.biz/fix-dictionary/4.2/msgType_V_86.html)).
+2. On сurrency rate change we send it to the RabbitMq Fanout exchange.
+3. All services which queues bound to the exchange got notified.
 
 ![Oversimplified Architecture]({{ "/assets/oversimplified_arch.png" | absolute_url }})
 	**Pic.2.** *Oversimplified architecture. Currency rate broadcasting.*
 
 Also we need to purchase currency when multi-currency operation performed buy our client. It looks like the following (Pic.3)
-1. Service requests purchase of specified currency for another currency(USD for RUR in example below)
+1. Service requests purchase of the specified currency for another currency(USD for RUR in example below)
 2. ***FIX Service*** (which connected to broker) translates our message(it can be in format of JSON, XML, Protocol Buffer, [paste your own inter-service communication format]) to FIX format(*New Order Single*) and sends it to broker.
 3. ***FIX Service*** Receives *Execution Report Response* from broker
 
