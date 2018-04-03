@@ -281,7 +281,7 @@ Fix.send_to_market_data_session(market_data)
 ```
 
 ### Handling response
-To handle response we simply define our callbacks provided by QuickfixJ framework in our `Application` class. Callbacks depend on type of message you want to handle. You can find more detailed example with full application class above. Most of messages are handled in `from_app` callback. We just sent `Market data Request` so we want to handle market data snapshot. For this I do: 
+To handle the response we simply define our callbacks provided by the QuickfixJ framework in our `Application` class. Callbacks depend on type of message you want to handle. You can find more detailed example with full application class above. Most of messages are handled in `from_app` callback. We just sent `Market data Request` so we want to handle market data snapshot. For this I do: 
 ```ruby
 # app/application.rb
 # inside class Application
