@@ -7,7 +7,7 @@ categories: ruby jruby fix
 
 # Utilizing FIX Protocol with Ruby and QuickfixJ.
 ## Fix protocol overview.
-FIX Protocol stands for Financial Information eXchange Protocol. It is commonly used for currency and stock trading. To perform Fix protocol messages exchange you need to create session: establish persistent tcp connection between client and broker. There can be many TCP connections(sessions). Each for the predefined type of messages/information(For example, My broker can define one session and end-point for fetching prices and another for buying/selling). Or maybe you want to connect to many serves/markets with single app.
+FIX Protocol stands for Financial Information eXchange Protocol. It is commonly used for currency and stock trading. To perform Fix protocol messages exchange you need to create a session: establish the persistent tcp connection between the client and a broker. There can be many TCP connections(sessions). Each for the predefined type of messages/information(For example, My broker can define one session and end-point for fetching prices and another for buying/selling). Or maybe you want to connect to many serves/markets with the single app.
 
 Message format is dead simple and looks something like(%- stands for interpolation):
 `%TAG=%VALUE%DELIMETER`
@@ -19,7 +19,7 @@ Here are some tags parsed and explained by great online tool [FIX Parser](https:
 ![Message Explained]({{"/assets/quickfix_message.png" | absolute_url }}){:height="180px" width="740px"}
 	**Pic.1.** *FIX Protocol message format explained.*
 
-You can also find thorough description of each standard tag and standard message here: [FIX  Dictionary](https://www.onixs.biz/fix-dictionary/4.2). But there are always some user-defined fields(which defined by your broker or vendor)
+You can also find the thorough description of each standard tag and standard message here: [FIX  Dictionary](https://www.onixs.biz/fix-dictionary/4.2). But there are always some user-defined fields(which defined by your broker or vendor)
 
 ## Motivation.
 I work for financial organization Rocketbank LLC. Recently I had task to implement real-time currency purchase for our clients. We utilize micro service architecture approach. To accomplish this task was decided implement micro-service(lets call it ***FIX Service***), which will purchase it directly from currency broker and will be something like proxy between our system and currency broker, which also decodes outgoing messages from our system, to broker and vice versa. Also we need to be notified about the current currency rates and broadcast it to all services interested in it via **rabbitmq**. Oversimplified architecture looks like the following(Pic.2): 
@@ -30,7 +30,7 @@ I work for financial organization Rocketbank LLC. Recently I had task to impleme
 ![Oversimplified Architecture]({{ "/assets/oversimplified_arch.png" | absolute_url }})
 	**Pic.2.** *Oversimplified architecture. Currency rate broadcasting.*
 
-Also we need to purchase currency when multi-currency operation performed buy our client. It looks like the following (Pic.3)
+Also we need to purchase the currency when any multi-currency operation performed buy our client. It looks like the following (Pic.3)
 1. Service requests purchase of the specified currency for another currency(USD for RUR in example below)
 2. ***FIX Service*** (which connected to broker) translates our message(it can be in format of JSON, XML, Protocol Buffer, [paste your own inter-service communication format]) to FIX format(*New Order Single*) and sends it to broker.
 3. ***FIX Service*** Receives *Execution Report Response* from broker
@@ -325,6 +325,6 @@ And add it to `MarketDataSnapshotFullRefresh` response:
 ```
 
 ### Summary
-I covered only the basics of FIX-protocol usage and QuickfixJ framework.  You always can refer to [QuickfixJ Documentation](https://www.quickfixj.org/usermanual/2.0.0//usage/configuration.html) . 
-And [Example Application for Java on Github](https://github.com/quickfix-j/quickfixj/blob/master/quickfixj-examples/executor/src/main/java/quickfix/examples/executor/Application.java).  Also your vendor should have provided documentation for all the fields and possible protocol interactions.
+I covered only the basics of FIX-protocol usage and QuickfixJ framework.  You always can refer to [QuickfixJ Documentation](https://www.quickfixj.org/usermanual/2.0.0//usage/configuration.html). 
+And [Example Application for Java on Github](https://github.com/quickfix-j/quickfixj/blob/master/quickfixj-examples/executor/src/main/java/quickfix/examples/executor/Application.java). Also your vendor should have provided documentation for all the fields and possible protocol interactions.
 Happy Coding!
