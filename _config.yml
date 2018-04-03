@@ -13,7 +13,7 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Like NP Blog <3
+title: Creepycheese Blog <3
 email: inqify@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   Code. Ruby, Ruby on Rails, JRuby. Financial protocols and banking.
