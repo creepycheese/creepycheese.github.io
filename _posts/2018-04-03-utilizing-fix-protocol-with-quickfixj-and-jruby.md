@@ -7,7 +7,7 @@ categories: ruby jruby fix
 
 # Utilizing FIX Protocol with Ruby and QuickfixJ.
 ## Fix protocol overview.
-FIX Protocol stands for Financial Information eXchange Protocol. It is commonly used for currency and stock trading. To perform Fix protocol messages exchange you need to create session: establishs persistent tcp connection between client and broker. There can be many TCP connections(sessions). Each for predefined type of messages/information(For example, My broker can define one session and end-point for fetching prices and another for buying/selling). Or maybe you want to connect to many serves/markets with single app.
+FIX Protocol stands for Financial Information eXchange Protocol. It is commonly used for currency and stock trading. To perform Fix protocol messages exchange you need to create session: establishes persistent tcp connection between client and broker. There can be many TCP connections(sessions). Each for predefined type of messages/information(For example, My broker can define one session and end-point for fetching prices and another for buying/selling). Or maybe you want to connect to many serves/markets with single app.
 
 Message format is dead simple and looks something like(%- stands for interpolation):
 `%TAG=%VALUE%DELIMETER`
