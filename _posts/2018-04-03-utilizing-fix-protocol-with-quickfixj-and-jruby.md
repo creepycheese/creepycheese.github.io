@@ -2,7 +2,6 @@
 layout: post
 title: Utilizing FIX Protocol with Ruby and QuickfixJ.
 tags: jruby fix ruby protocol
-categories: ruby jruby fix financial
 ---
 
 # Utilizing FIX Protocol with Ruby and QuickfixJ.
