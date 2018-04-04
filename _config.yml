@@ -29,7 +29,7 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
 
-google_analytics: 'Privet mir'
+google_analytics: 'UA-116921708-1'
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
@@ -42,3 +42,4 @@ google_analytics: 'Privet mir'
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+#
