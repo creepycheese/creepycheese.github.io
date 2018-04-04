@@ -61,11 +61,11 @@ As for me I defined 3 core «parts». They are:
 # /app/application.rb
 module Fix
   class Application
-	  # JRuby 'implements' interface
+    # JRuby 'implements' interface
     include quickfix.Application
 
     def initialize(*args)
-		# Some initialization
+    # Some initialization
 
       super
     end
@@ -76,7 +76,7 @@ module Fix
 
     def on_logon(session_id)
       # callback executed when logon succeed
-		# here we start requesting market data for example
+      # here we start requesting market data for example
       Fix.request_market_data(sell_currency: 'RUR', buy_currency: 'USD')
     end
 
@@ -93,7 +93,7 @@ module Fix
     end
 
     def from_app(msg, session_id)
-#callback executed when message is received from server(broker)
+      #callback executed when message is received from server(broker)
       case msg
       when quickfix.fix44.MarketDataSnapshotFullRefresh
         #when market data received
@@ -188,14 +188,14 @@ module Fix
   end
 
   def start
-	  #initialize fix application with callbacks
+    #initialize fix application with callbacks
     application = Application.new
     session_settings = quickfix.SessionSettings.new(java.io.FileInputStream.new(FIX_SETTINGS))
     store_factory = quickfix.FileStoreFactory.new(session_settings)
     log_factory = quickfix.FileLogFactory.new(session_settings)
     message_factory = quickfix.DefaultMessageFactory.new
     @initiator = quickfix.SocketInitiator.new(application, store_factory, session_settings, log_factory, message_factory)
-	   #start our sessions
+    #start our sessions
     initiator.start
   end
 end
